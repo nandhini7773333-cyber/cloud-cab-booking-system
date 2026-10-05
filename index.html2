@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud-Based Cab Booking System</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e8f0fe;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .box {
+            background: white;
+            width: 400px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input, select, button {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+        }
+
+        button {
+            background: #1565c0;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f1f8e9;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>🚕 Cab Booking System</h2>
+
+    <input type="text" id="name" placeholder="Passenger Name">
+
+    <input type="text" id="pickup" placeholder="Pickup Location">
+
+    <input type="text" id="drop" placeholder="Drop Location">
+
+    <select id="cab">
+        <option value="">Select Cab</option>
+        <option>Mini</option>
+        <option>Sedan</option>
+        <option>SUV</option>
+    </select>
+
+    <input type="number" id="distance" placeholder="Distance in KM">
+
+    <button onclick="bookCab()">Book Cab</button>
+
+    <div id="output"></div>
+
+</div>
+
+<script>
+
+function bookCab() {
+
+    let name = document.getElementById("name").value;
+    let pickup = document.getElementById("pickup").value;
+    let drop = document.getElementById("drop").value;
+    let cab = document.getElementById("cab").value;
+    let distance = document.getElementById("distance").value;
+
+    if (name == "" || pickup == "" || drop == "" || cab == "" || distance == "") {
+        alert("Please fill all details");
+        return;
+    }
+
+    let rate;
+
+    if (cab == "Mini")
+        rate = 15;
+    else if (cab == "Sedan")
+        rate = 20;
+    else
+        rate = 25;
+
+    let fare = distance * rate;
+
+    document.getElementById("output").innerHTML =
+        "<h3>Booking Successful ✅</h3>" +
+        "<p>Passenger: " + name + "</p>" +
+        "<p>Pickup: " + pickup + "</p>" +
+        "<p>Drop: " + drop + "</p>" +
+        "<p>Cab: " + cab + "</p>" +
+        "<p>Distance: " + distance + " KM</p>" +
+        "<p>Fare: ₹" + fare + "</p>" +
+        "<b>Booking Status: CONFIRMED</b>";
+}
+
+</script>
+
+</body>
+</html>
